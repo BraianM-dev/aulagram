@@ -6,6 +6,42 @@
   <meta name="description" content="AulaGram v8 · red social educativa para 9.º EBI">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>AulaGram · 9.º EBI</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/css/styles.css?v=8.2.0">
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido principal</a>
+  <div id="app"><div class="loading"><div><div class="spinner"></div><p>Cargando AulaGram…</p></div></div></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <div id="a11yBack" class="a11y-back" hidden onclick="closeA11y()"></div>
+  <aside id="a11yPanel" class="a11y-panel" role="dialog" aria-modal="true" aria-labelledby="a11yTitle" hidden>
+    <div class="a11y-head"><h2 id="a11yTitle">Accesibilidad</h2><button id="a11yClose" class="btn" type="button" onclick="closeA11y()" aria-label="Cerrar">×</button></div>
+    <p class="small">Estas preferencias quedan solo en este navegador. Probá distintas combinaciones y observá qué barreras cambian.</p>
+    <fieldset class="a11y-group"><legend>Tema</legend><div class="a11y-opts"><button class="a11y-choice" data-a11y-key="theme" data-a11y-value="auto" onclick="a11ySet('theme','auto')">Sistema</button><button class="a11y-choice" data-a11y-key="theme" data-a11y-value="light" onclick="a11ySet('theme','light')">Claro</button><button class="a11y-choice" data-a11y-key="theme" data-a11y-value="dark" onclick="a11ySet('theme','dark')">Oscuro</button></div></fieldset>
+    <fieldset class="a11y-group"><legend>Contraste</legend><div class="a11y-opts two"><button class="a11y-choice" data-a11y-key="contrast" data-a11y-value="normal" onclick="a11ySet('contrast','normal')">Normal</button><button class="a11y-choice" data-a11y-key="contrast" data-a11y-value="high" onclick="a11ySet('contrast','high')">Alto</button></div></fieldset>
+    <fieldset class="a11y-group"><legend>Tipografía</legend><div class="a11y-opts two"><button class="a11y-choice" data-a11y-key="font" data-a11y-value="default" onclick="a11ySet('font','default')">Predeterminada</button><button class="a11y-choice" data-a11y-key="font" data-a11y-value="friendly" onclick="a11ySet('font','friendly')">Lectura amigable</button></div></fieldset>
+    <fieldset class="a11y-group"><legend>Tamaño de texto</legend><div class="a11y-opts"><button class="a11y-choice" data-a11y-key="size" data-a11y-value="100" onclick="a11ySet('size','100')">100%</button><button class="a11y-choice" data-a11y-key="size" data-a11y-value="112" onclick="a11ySet('size','112')">112%</button><button class="a11y-choice" data-a11y-key="size" data-a11y-value="125" onclick="a11ySet('size','125')">125%</button><button class="a11y-choice" data-a11y-key="size" data-a11y-value="150" onclick="a11ySet('size','150')">150%</button><button class="a11y-choice" data-a11y-key="size" data-a11y-value="200" onclick="a11ySet('size','200')">200%</button></div></fieldset>
+    <fieldset class="a11y-group"><legend>Espaciado</legend><div class="a11y-opts two"><button class="a11y-choice" data-a11y-key="spacing" data-a11y-value="normal" onclick="a11ySet('spacing','normal')">Normal</button><button class="a11y-choice" data-a11y-key="spacing" data-a11y-value="wide" onclick="a11ySet('spacing','wide')">Ampliado</button></div></fieldset>
+    <fieldset class="a11y-group"><legend>Animaciones</legend><div class="a11y-opts"><button class="a11y-choice" data-a11y-key="motion" data-a11y-value="auto" onclick="a11ySet('motion','auto')">Sistema</button><button class="a11y-choice" data-a11y-key="motion" data-a11y-value="on" onclick="a11ySet('motion','on')">Activadas</button><button class="a11y-choice" data-a11y-key="motion" data-a11y-value="off" onclick="a11ySet('motion','off')">Desactivadas</button></div></fieldset>
+    <fieldset class="a11y-group"><legend>Enlaces</legend><div class="a11y-opts two"><button class="a11y-choice" data-a11y-key="links" data-a11y-value="normal" onclick="a11ySet('links','normal')">Normal</button><button class="a11y-choice" data-a11y-key="links" data-a11y-value="underline" onclick="a11ySet('links','underline')">Subrayados</button></div></fieldset>
+    <fieldset class="a11y-group"><legend>Foco</legend><div class="a11y-opts two"><button class="a11y-choice" data-a11y-key="focus" data-a11y-value="normal" onclick="a11ySet('focus','normal')">Normal</button><button class="a11y-choice" data-a11y-key="focus" data-a11y-value="strong" onclick="a11ySet('focus','strong')">Reforzado</button></div></fieldset>
+    <button class="btn soft" style="width:100%" onclick="a11yReset()">Restablecer preferencias</button>
+  </aside>
+  <script src="assets/js/config.js?v=8.2.0"></script>
+  <script src="assets/js/bridge.js?v=8.2.0"></script>
+  <script src="assets/js/accessibility.js?v=8.2.0"></script>
+  <script src="assets/js/app.js?v=8.2.0"></script>
+</body>
+</html>
+<!doctype html>
+<html lang="es" data-theme="auto" data-contrast="normal" data-font="default" data-size="100" data-spacing="normal" data-motion="auto" data-links="normal" data-focus="strong">
+<head>
+    <meta charset="utf-8">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="AulaGram v8 · red social educativa para 9.º EBI">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AulaGram · 9.º EBI</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
