@@ -1,14 +1,23 @@
-# AulaGram v8 - Frontend GitHub Pages
+# AulaGram v8.3 - Frontend GitHub Pages
 
-Copiá el CONTENIDO de esta carpeta a tu repositorio, por ejemplo:
+AulaGram usa GitHub Pages para toda la interfaz y Google Apps Script + Google Drive para persistencia y lógica del servidor.
 
-`aulagram/`
+- Interfaz: https://braianm-dev.github.io/aulagram/
+- Panel docente: https://braianm-dev.github.io/aulagram/#admin
+- Transporte: `fetch(..., mode: "no-cors")` para escrituras y JSONP para lecturas/resultados. No se incrusta Apps Script en iframes.
 
-La URL quedará:
-`https://braianm-dev.github.io/aulagram/`
+## v8.3
 
-## Configuración
-El archivo `assets/js/config.js` ya contiene la URL de Apps Script que proporcionaste. Si alguna vez creás un despliegue nuevo, solo cambiá `BACKEND_URL` y volvé a subir ese archivo.
+- Publicaciones iniciales renovadas con 30 tarjetas visuales y 10 avatares, generados localmente en el navegador y cacheados durante la sesión.
+- Frases y textos renovados para HTML, CSS, JavaScript, Python, IA, accesibilidad, redes y ciudadanía digital.
+- Botón docente visible para activar/pausar AulaGram.
+- Exportación de mensajes a CSV/JSON desde el panel docente (requiere backend v8.3).
+- Centro de accesibilidad: tema, alto contraste, lectura amigable, texto 100-200 %, espaciado, movimiento, subrayado de enlaces y foco reforzado. Escape cierra el panel y Tab queda contenido en el diálogo.
+- Carga diferida (`loading=lazy`) y decodificación asíncrona de imágenes.
+- Las imágenes oficiales no consumen Drive ni llamadas RPC.
 
-## Por qué v8 es más fluido
-La navegación completa (Inicio, Explorar, Publicar, Mensajes, Actividad, Perfil y Accesibilidad) vive en GitHub Pages y nunca cambia de dominio ni recarga Apps Script. Un iframe oculto de 1 px mantiene una sola conexión con la Web App y usa `postMessage` + `google.script.run` para las operaciones de backend. Esto evita CORS y evita navegar por `script.googleusercontent.com`.
+## Backend
+
+En el paquete de respaldo completo se incluye el código de Google Apps Script. Antes de desplegar, cambiá `CLASS_CODE` y `ADMIN_PIN` únicamente en Apps Script. No publiques el PIN real en este repositorio.
+
+Después de actualizar el backend ejecutá `setupAulaGramV7()` y `diagnosticoAulaGramV8()`, y publicá una nueva versión del mismo despliegue `/exec`.
