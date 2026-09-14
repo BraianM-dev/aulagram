@@ -101,8 +101,14 @@
     if(!data.result.ok)throw new Error(data.result.error||'Error del servidor');
     return data.result.value;
   }
+  function backendSupportsFastReads(){
+    const m=String(readyVersion||'').match(/^(\d+)\.(\d+)/);
+    if(!m)return false;
+    return (+m[1]>8)||(+m[1]===8&&+m[2]>=4);
+  }
   function mayUseDirectRead(name,args){
     if(!DIRECT_READS.has(name))return false;
+    if(name!=='getAssetsData'&&!backendSupportsFastReads())return false;
     if(name==='getBootstrap' && args && args[2])return false;
     return true;
   }
