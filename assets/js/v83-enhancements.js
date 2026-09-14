@@ -24,15 +24,49 @@ if(typeof originalImgHtml==='function'){
   };
 }
 function aliasFromHref(href){const m=String(href||'').match(/#profile\/([^?#]+)/);if(!m)return '';try{return decodeURIComponent(m[1])}catch(e){return m[1]}}
-function applySeedVisuals(root=document){
-  root.querySelectorAll('.story').forEach(el=>{const a=aliasFromHref(el.getAttribute('href'));const img=el.querySelector('img');const src=seed.avatar(a);if(img&&src&&img.src!==src)img.src=src});
-  root.querySelectorAll('.person-card').forEach(el=>{const a=aliasFromHref(el.querySelector('a[href*="#profile/"]')?.getAttribute('href'));const img=el.querySelector('img.avatar');const src=seed.avatar(a);if(img&&src)img.src=src});
-  const route=(location.hash||'').replace(/^#profile\//,'').split('?')[0];if(route&&location.hash.startsWith('#profile/')){
-    let a='';try{a=decodeURIComponent(route)}catch(e){a=route}
-    const av=root.querySelector('.profile-card .big-avatar');if(av&&seed.avatar(a))av.src=seed.avatar(a);
-    root.querySelectorAll('.profile-grid .grid-post').forEach((el,i)=>{const img=el.querySelector('img'),m=seed.postMeta(a,i+1),ov=el.querySelector('.grid-overlay');if(img&&m)img.src=m.image;if(ov&&m){const like=(ov.textContent.match(/♥\s*(\d+)/)||[])[1]||'0';ov.textContent=m.title+' · ♥ '+like}})
+function safeAttr(v){return g.attr?g.attr(v):String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function ensureImg(container,selector,src,cls,alt){
+  if(!container||!src)return null;
+  let img=container.querySelector(selector||'img');
+  if(!img){
+    img=document.createElement('img');
+    if(cls)img.className=cls;
+    img.loading='lazy';img.decoding='async';
+    const placeholder=container.querySelector('div[aria-label="Sin imagen"], .avatar, .big-avatar');
+    if(placeholder&&placeholder.tagName!=='IMG')placeholder.replaceWith(img);else container.prepend(img);
   }
-  root.querySelectorAll('.conv').forEach(el=>{const click=el.getAttribute('onclick')||'';const m=click.match(/openChat\('([^']+)'\)/);if(!m)return;const img=el.querySelector('img.avatar'),src=seed.avatar(m[1]);if(img&&src)img.src=src});
+  img.src=src;
+  if(alt)img.alt=alt;
+  return img;
+}
+function applySeedVisuals(root=document){
+  root.querySelectorAll('.story').forEach(el=>{
+    const a=aliasFromHref(el.getAttribute('href')),src=seed.avatar(a);
+    if(src)ensureImg(el,'img',src,'','Avatar de '+a);
+  });
+  root.querySelectorAll('.person-card').forEach(el=>{
+    const a=aliasFromHref(el.querySelector('a[href*="#profile/"]')?.getAttribute('href')),src=seed.avatar(a);
+    if(src)ensureImg(el,'img.avatar',src,'avatar','Avatar de '+a);
+  });
+  const route=(location.hash||'').replace(/^#profile\//,'').split('?')[0];
+  if(route&&location.hash.startsWith('#profile/')){
+    let a='';try{a=decodeURIComponent(route)}catch(e){a=route}
+    const profile=root.querySelector('.profile-card');
+    const avsrc=seed.avatar(a);
+    if(profile&&avsrc)ensureImg(profile,'.big-avatar',avsrc,'big-avatar','Avatar de '+a);
+    root.querySelectorAll('.profile-grid .grid-post').forEach((el,i)=>{
+      const m=seed.postMeta(a,i+1),ov=el.querySelector('.grid-overlay');
+      if(m){
+        ensureImg(el,'img',m.image,'','Publicación de '+a+': '+m.alt);
+        if(ov){const like=(ov.textContent.match(/♥\s*(\d+)/)||[])[1]||'0';ov.textContent=m.title+' · ♥ '+like}
+      }
+    });
+  }
+  root.querySelectorAll('.conv').forEach(el=>{
+    const click=el.getAttribute('onclick')||'',m=click.match(/openChat\('([^']+)'\)/);
+    if(!m)return;
+    const src=seed.avatar(m[1]);if(src)ensureImg(el,'img.avatar',src,'avatar','Avatar de '+m[1]);
+  });
   root.querySelectorAll('footer').forEach(f=>{if(/AulaGram v8\.1|AulaGram v8\.2/.test(f.textContent))f.innerHTML=f.innerHTML.replace(/AulaGram v8\.[12]/g,'AulaGram v8.3')});
 }
 function adminActiveInput(){return Array.from(document.querySelectorAll('.toggle input')).find(x=>(x.getAttribute('onchange')||'').includes("adminSetting('active'"))}
