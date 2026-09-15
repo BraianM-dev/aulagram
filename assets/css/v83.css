@@ -1,3 +1,130 @@
 /* AulaGram v8.3 - mejoras finales de aula y accesibilidad */
 .network-status{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:14px 0 0;padding:12px 14px;border:2px solid var(--line);border-radius:8px}.network-status>div:first-child{display:flex;flex-direction:column;gap:3px}.network-status span{font-size:.8rem;color:var(--muted)}.network-status.open{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 8%,var(--panel))}.network-status.closed{border-color:#d97706;background:color-mix(in srgb,#d97706 8%,var(--panel))}
 .post-img,.grid-post img,.avatar,.mini-avatar,.big-avatar{content-visibility:auto}html[data-contrast="high"] a{color:#ffe600}html[data-contrast="high"] a:visited{color:#00ffff}html[data-contrast="high"] .backend-dot.ok{background:#00ff66}html[data-contrast="high"] .backend-dot.error{background:#ff5f5f}html[data-size="200"] .post-body,html[data-size="200"] .card-pad,html[data-size="200"] .hero{overflow-wrap:anywhere}@media(forced-colors:active){.btn,.card,.post,input,textarea,select{forced-color-adjust:auto}.backend-dot{border:1px solid CanvasText}.a11y-choice.active{outline:3px solid Highlight}}
+/* ===== Mensajería: ajuste visual ===== */
+
+.messages-layout{
+  display:grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  min-height: 560px;
+}
+
+.conversation-list{
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+  min-width: 0;
+}
+
+.chat{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  min-height:0;
+}
+
+.chat-head{
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+  font-weight: 700;
+}
+
+.chat-picks{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:14px 14px 6px;
+  align-items:flex-start;
+  align-content:flex-start;
+}
+
+.chat-picks button{
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 0;
+  height: auto;
+  min-height: 38px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--line);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.chat-picks button:hover{
+  background: rgba(255,255,255,.10);
+}
+
+.chat-thread{
+  flex:1;
+  min-height: 260px;
+  padding: 16px;
+  overflow-y: auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.composer{
+  display:grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap:10px;
+  padding:12px;
+  border-top: 1px solid var(--line);
+  align-items:end;
+}
+
+.composer textarea{
+  width:100%;
+  min-height:64px;
+  max-height:140px;
+  resize:vertical;
+  box-sizing:border-box;
+}
+
+.composer .btn,
+.composer button{
+  height: 44px;
+  align-self:end;
+}
+
+/* Burbujas */
+.bubble{
+  max-width: 78%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--line);
+  line-height: 1.4;
+}
+
+.bubble.mine{
+  align-self:flex-end;
+}
+
+/* Responsive */
+@media (max-width: 860px){
+  .messages-layout{
+    grid-template-columns: 1fr;
+  }
+
+  .conversation-list{
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    max-height: 220px;
+  }
+
+  .composer{
+    grid-template-columns: 1fr;
+  }
+
+  .composer button,
+  .composer .btn{
+    width:100%;
+  }
+}
