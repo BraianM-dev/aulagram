@@ -15,6 +15,8 @@ function botSmallTalk_(bot, q, from) {
   if (hasAny_(q,['que haces','que podes hacer','que puedes hacer'])) return botMenu_(bot);
   if (hasAny_(q,['sos una ia','eres una ia','sos un bot','eres un bot'])) return 'Soy un bot educativo de AulaGram basado en reglas y contenidos preparados. No uso una IA externa ni envío esta conversación a un modelo generativo.';
   if (hasAny_(q,['mi nombre es','me llamo '])) return 'Podés contarme cómo querés que te llame dentro de esta conversación, pero en AulaGram conviene usar el alias del perfil y evitar publicar tu nombre completo u otros datos personales.';
+  if (hasAny_(q,['contame algo','decime algo','sorprendeme','sorpréndeme'])) return botFact_();
+  if (hasAny_(q,['que opinas','qué opinas'])) return 'Puedo ayudarte a analizar una idea desde lo técnico y educativo. Decime sobre qué tema querés una opinión y te explico criterios, ventajas y límites.';
   return null;
 }
 
@@ -32,5 +34,7 @@ function botReply_(bot, question, from) {
   if(hasAny_(q,['pista']))return 'Pista general: nombrá qué esperabas ver, qué ves realmente y cuál fue el último cambio que hiciste. Esa comparación suele señalar dónde mirar.';
   const answer=botKnowledge_(bot,q);
   if(answer)return answer;
-  return 'No entendí del todo esa pregunta. Probá reformularla con una palabra clave o un ejemplo. Puedo trabajar con HTML, CSS, JavaScript, Python, IA, accesibilidad/WCAG, LAN, IP, HTTP, redes, archivos, JSON, Git/GitHub, hardware, seguridad, ciudadanía digital, “reto”, “quiz” o “dato random”.';
+  const expanded=botExpandedKnowledge_(bot,q);
+  if(expanded)return expanded;
+  return 'No pude asociar esa pregunta con suficiente precisión. Probá mencionar el concepto principal o darme un ejemplo concreto. Puedo responder sobre HTML, CSS, JavaScript, Python, IA, accesibilidad/WCAG, LAN, redes, IP, HTTP/HTTPS, archivos, JSON, Git/GitHub, hardware, seguridad y ciudadanía digital; además podés pedirme “reto”, “quiz” o “dato random”.';
 }
