@@ -19,25 +19,27 @@ Versión de mantenimiento **v8.6.1**. Conserva el frontend liviano de v8.6 y agr
 
 ## Estructura útil
 
-- `backend/apps-script/` → instrucciones y código para Google Apps Script.
-- `plantilla-alumno/` → material que se entrega a estudiantes.
-- `docs/` → instalación, guía docente, guía estudiante, seguridad y arquitectura.
-- `dist/` → paquete completo listo para descargar, incluido `AulaGram.gs`.
+- `backend/apps-script/` → instrucciones, manifiesto y backend completo para Google Apps Script.
+- `backend/apps-script/modular/` → código del servidor separado por responsabilidad para facilitar mantenimiento.
+- `plantilla-alumno/` → material editable que se entrega a estudiantes, con imágenes locales de prueba.
+- `docs/` → instalación, guía docente, guía estudiante, seguridad, bots y arquitectura.
 - `assets/` → frontend publicado por GitHub Pages.
 
 ## Instalación rápida del backend
 
-En el paquete `dist/AulaGram_v8_6_1_COMPLETO.zip` está el backend completo. Después de copiar `AulaGram.gs` y `appsscript.json` a Apps Script, ejecutar:
+Copiá en un proyecto de Google Apps Script los archivos `.gs` de `backend/apps-script/modular/` y el manifiesto `backend/apps-script/appsscript.json`. Luego ejecutá, con valores propios:
 
 ```js
 configurarAulaGramSeguridad("CODIGO-DE-CLASE", "PIN-DOCENTE-SEGURO")
 ```
 
-Luego ejecutar `setupAulaGramV7()`, `diagnosticoAulaGramV8()` y desplegar como aplicación web. Las credenciales reales deben permanecer en **Propiedades del script**, no en GitHub.
+Después ejecutá `setupAulaGramV7()`, `diagnosticoAulaGramV8()` y desplegá como aplicación web. Las credenciales reales quedan en **Propiedades del script** y no deben publicarse en GitHub.
+
+La URL `/exec` del despliegue se configura en `assets/js/config.js`. Si se actualiza el mismo despliegue de Apps Script con una nueva versión, la URL puede mantenerse.
 
 ## Bots educativos
 
-Los bots son basados en reglas y no llaman a una IA externa. Además de respuestas educativas, entienden intercambios básicos como saludos, presentación, agradecimiento, despedida, `¿cómo te llamás?`, `¿cómo estás?`, `reto`, `quiz` y `dato random`.
+Los bots son basados en reglas y no llaman a una IA externa. Además de una base amplia de contenidos de HTML, CSS, JavaScript, Python, IA, accesibilidad, redes y seguridad, entienden intercambios básicos como saludos, presentación, agradecimiento, despedida, `¿cómo te llamás?`, `¿cómo estás?`, `reto`, `quiz` y `dato random`.
 
 ## Antispam y moderación
 
