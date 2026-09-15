@@ -1,23 +1,54 @@
-# AulaGram v8.3 - Frontend GitHub Pages
+# AulaGram
 
-AulaGram usa GitHub Pages para toda la interfaz y Google Apps Script + Google Drive para persistencia y lógica del servidor.
+**Red social educativa para 9.º EBI · HTML + CSS + accesibilidad + ciudadanía digital**
 
-- Interfaz: https://braianm-dev.github.io/aulagram/
-- Panel docente: https://braianm-dev.github.io/aulagram/#admin
-- Transporte: `fetch(..., mode: "no-cors")` para escrituras y JSONP para lecturas/resultados. No se incrusta Apps Script en iframes.
+AulaGram convierte el perfil HTML/CSS de cada estudiante en parte de una pequeña comunidad educativa: feed, perfiles, seguimiento, likes, comentarios, mensajería moderable y bots temáticos. La evaluación se centra en el proceso y el aprendizaje, no en métricas de popularidad.
 
-## v8.3
+**Frontend:** https://braianm-dev.github.io/aulagram/
 
-- Publicaciones iniciales renovadas con 30 tarjetas visuales y 10 avatares, generados localmente en el navegador y cacheados durante la sesión.
-- Frases y textos renovados para HTML, CSS, JavaScript, Python, IA, accesibilidad, redes y ciudadanía digital.
-- Botón docente visible para activar/pausar AulaGram.
-- Exportación de mensajes a CSV/JSON desde el panel docente (requiere backend v8.3).
-- Centro de accesibilidad: tema, alto contraste, lectura amigable, texto 100-200 %, espaciado, movimiento, subrayado de enlaces y foco reforzado. Escape cierra el panel y Tab queda contenido en el diálogo.
-- Carga diferida (`loading=lazy`) y decodificación asíncrona de imágenes.
-- Las imágenes oficiales no consumen Drive ni llamadas RPC.
+## Estado
 
-## Backend
+Versión de mantenimiento **v8.6.1**. Conserva el frontend liviano de v8.6 y agrega documentación completa, plantilla pública del estudiante, backend reproducible, conversación casual de bots y antispam en mensajes/comentarios.
 
-En el paquete de respaldo completo se incluye el código de Google Apps Script. Antes de desplegar, cambiá `CLASS_CODE` y `ADMIN_PIN` únicamente en Apps Script. No publiques el PIN real en este repositorio.
+## Arquitectura
 
-Después de actualizar el backend ejecutá `setupAulaGramV7()` y `diagnosticoAulaGramV8()`, y publicá una nueva versión del mismo despliegue `/exec`.
+- **GitHub Pages:** interfaz HTML/CSS/JS.
+- **Google Apps Script:** API/backend, sesiones, validación, moderación y bots.
+- **Google Drive privado del docente:** perfiles, imágenes, JSON y respaldos.
+- **Alumnado:** trabaja únicamente con `perfil.html`, `estilo.css` e imágenes locales.
+
+## Estructura útil
+
+- `backend/apps-script/` → instrucciones, manifiesto y backend completo para Google Apps Script.
+- `backend/apps-script/modular/` → código del servidor separado por responsabilidad para facilitar mantenimiento.
+- `plantilla-alumno/` → material editable que se entrega a estudiantes, con imágenes locales de prueba.
+- `docs/` → instalación, guía docente, guía estudiante, seguridad, bots y arquitectura.
+- `assets/` → frontend publicado por GitHub Pages.
+
+## Instalación rápida del backend
+
+Copiá en un proyecto de Google Apps Script los archivos `.gs` de `backend/apps-script/modular/` y el manifiesto `backend/apps-script/appsscript.json`. Luego ejecutá, con valores propios:
+
+```js
+configurarAulaGramSeguridad("CODIGO-DE-CLASE", "PIN-DOCENTE-SEGURO")
+```
+
+Después ejecutá `setupAulaGramV7()`, `diagnosticoAulaGramV8()` y desplegá como aplicación web. Las credenciales reales quedan en **Propiedades del script** y no deben publicarse en GitHub.
+
+La URL `/exec` del despliegue se configura en `assets/js/config.js`. Si se actualiza el mismo despliegue de Apps Script con una nueva versión, la URL puede mantenerse.
+
+## Bots educativos
+
+Los bots son basados en reglas y no llaman a una IA externa. Además de una base amplia de contenidos de HTML, CSS, JavaScript, Python, IA, accesibilidad, redes y seguridad, entienden intercambios básicos como saludos, presentación, agradecimiento, despedida, `¿cómo te llamás?`, `¿cómo estás?`, `reto`, `quiz` y `dato random`.
+
+## Antispam y moderación
+
+A la moderación existente se suma control de frecuencia: limita ráfagas y repeticiones de mensajes/comentarios, aplica una pausa corta y registra el evento para el panel docente. Los límites se configuran en el objeto `AG` del backend.
+
+## Privacidad
+
+AulaGram utiliza alias y no requiere una cuenta personal propia de la aplicación. Se bloquea el envío de correos, teléfonos y enlaces en comentarios/mensajes. La mensajería es educativa y moderable por el docente; no se presenta como un canal privado frente al docente.
+
+## Licencia
+
+Código: **MIT**. Documentación y recursos educativos originales: **CC BY 4.0**. Ver `LICENSE` y `LICENSES/`.

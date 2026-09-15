@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi perfil - AulaGram</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <a class="saltar" href="#contenido">Saltar al contenido principal</a>
+    <!-- =====================================================
+         AULAGRAM · PERFIL DEL ESTUDIANTE
+         Editá este HTML y estilo.css.
+         No necesitás JavaScript.
+         Conservá las clases marcadas como IMPORTANTES porque
+         el servidor las usa para reconocer tu perfil.
+         ===================================================== -->
+
+    <header class="header">
+        <h1 class="logo"><span class="azul">Aula</span><span class="rosa">Gram</span></h1>
+        <nav class="nav-icons" aria-label="Navegación de ejemplo">
+            <span aria-hidden="true">⌂</span>
+            <span aria-hidden="true">⌕</span>
+            <span aria-hidden="true">♡</span>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <section class="perfil">
+            <div class="info-superior">
+                <!-- IMPORTANTE: conservar class="foto-perfil" -->
+                <div class="aro-perfil">
+                    <img src="imagenes/avatar.png"
+                         alt="Avatar elegido para mi perfil de AulaGram"
+                         class="foto-perfil">
+                </div>
+
+                <div class="panel-derecho">
+                    <div class="estadisticas">
+                        <div class="estadistica"><div class="numero">2</div><div class="etiqueta">Publicaciones</div></div>
+                        <div class="estadistica"><div class="numero">0</div><div class="etiqueta">Seguidores</div></div>
+                        <div class="estadistica"><div class="numero">0</div><div class="etiqueta">Seguidos</div></div>
+                    </div>
+                    <div class="botones-perfil" aria-label="Vista previa de botones sociales">
+                        <button class="boton-perfil azul-fondo" type="button" disabled>Seguir</button>
+                        <button class="boton-perfil" type="button" disabled>Mensaje</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-usuario">
+                <!-- IMPORTANTE: conservar class="nombre-usuario" -->
+                <h1 class="nombre-usuario">pixel_09</h1>
+                <!-- IMPORTANTE: conservar class="biografia" -->
+                <p class="biografia">Estudiante de 9.º aprendiendo HTML y CSS 💻<br>Cambiá esta biografía por algo que represente tus intereses sin publicar datos personales.</p>
+                <p class="intereses">HTML · CSS · creatividad · tecnología</p>
+            </div>
+        </section>
+
+        <section class="sobre-mi">
+            <h2>Sobre mi perfil</h2>
+            <p>Este espacio fue creado con HTML y CSS. Personalizalo para que tenga identidad propia.</p>
+            <ul>
+                <li>Un hobby o interés.</li>
+                <li>Algo que te guste aprender.</li>
+                <li>Una temática para tus publicaciones.</li>
+            </ul>
+            <a href="https://www.ceibal.edu.uy/" target="_blank" rel="noopener">Un sitio que recomiendo</a>
+        </section>
+
+        <section class="zona-publicaciones">
+            <div class="pestanas"><span class="activa">▦ PUBLICACIONES</span><span>♡ GUARDADOS</span></div>
+            <div class="publicaciones">
+                <!-- IMPORTANTE: cada publicación debe conservar class="publicacion". -->
+                <article class="publicacion">
+                    <img src="imagenes/publicacion1.png" alt="Imagen de ejemplo relacionada con HTML">
+                    <div class="contenido-publicacion">
+                        <h2>Mi primera publicación</h2>
+                        <p>Contá algo sobre esta imagen, tu idea o el proceso de creación de tu perfil.</p>
+                    </div>
+                </article>
+
+                <article class="publicacion">
+                    <img src="imagenes/publicacion2.png" alt="Imagen de ejemplo relacionada con CSS">
+                    <div class="contenido-publicacion">
+                        <h2>Mi segunda publicación</h2>
+                        <p>Podés publicar sobre un hobby, una creación, un paisaje, una mascota o un tema que te interese.</p>
+                    </div>
+                </article>
+
+                <!-- DESAFÍO OPCIONAL: copiá un article.publicacion y usá publicacion3.png. -->
+            </div>
+        </section>
+
+        <section class="pista">
+            <h2>Huella del código</h2>
+            <p>Cambiá una propiedad en <strong>estilo.css</strong>, guardá y recargá. Observá qué cambió. Esa diferencia visible es la pista que conecta tu código con el resultado.</p>
+        </section>
+
+        <section class="mision-a11y">
+            <h2>Misión accesibilidad ♿</h2>
+            <p>Una página no está terminada solo porque “se ve linda”. Probala de distintas formas:</p>
+            <ul>
+                <li>Recorré enlaces y controles usando <strong>Tab</strong>.</li>
+                <li>Aumentá el zoom del navegador y comprobá que el texto no se corte.</li>
+                <li>Revisá que cada imagen tenga un <strong>alt</strong> útil.</li>
+                <li>Elegí colores con contraste suficiente y no dependas solo del color.</li>
+                <li>Si agregás efectos, contemplá a quienes prefieren menos movimiento.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer><p>AulaGram · actividad educativa de HTML + CSS</p></footer>
+</body>
+</html>

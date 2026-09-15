@@ -1,0 +1,292 @@
+/* =====================================================
+   AULAGRAM · PLANTILLA PARA 9.º EBI
+   Este archivo SÍ lo edita el estudiante.
+   Personalizá el diseño sin perder legibilidad.
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: light;
+}
+
+body {
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 680px;
+    background: #f5f6f8;
+    color: #262626;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.45;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+}
+
+.logo {
+    margin: 0;
+    font-size: 24px;
+}
+
+.azul { color: #405de6; }
+.rosa { color: #c2185b; }
+
+.nav-icons {
+    display: flex;
+    gap: 12px;
+    font-size: 21px;
+}
+
+.perfil,
+.sobre-mi,
+.zona-publicaciones,
+.pista,
+.mision-a11y {
+    margin-top: 12px;
+    padding: 18px;
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+}
+
+.info-superior {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.aro-perfil {
+    width: 100px;
+    height: 100px;
+    flex: 0 0 100px;
+    padding: 4px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #405de6, #833ab4, #c2185b, #f77737);
+}
+
+.foto-perfil {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 3px solid white;
+    border-radius: 50%;
+}
+
+.panel-derecho {
+    min-width: 0;
+    flex: 1;
+}
+
+.estadisticas,
+.botones-perfil {
+    display: flex;
+    gap: 8px;
+}
+
+.estadistica {
+    flex: 1;
+    text-align: center;
+}
+
+.numero {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.etiqueta {
+    color: #656565;
+    font-size: 12px;
+}
+
+.botones-perfil {
+    margin-top: 12px;
+}
+
+.boton-perfil {
+    flex: 1;
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 6px;
+    background: #eceff3;
+    font-weight: 700;
+}
+
+.boton-perfil.azul-fondo {
+    background: #006fc9;
+    color: white;
+}
+
+.info-usuario {
+    margin-top: 16px;
+}
+
+.nombre-usuario {
+    margin: 0 0 6px;
+    font-size: 20px;
+    overflow-wrap: anywhere;
+}
+
+.biografia,
+.intereses {
+    margin: 5px 0;
+    overflow-wrap: anywhere;
+}
+
+.intereses {
+    color: #555;
+    font-size: 14px;
+}
+
+.sobre-mi h2,
+.pista h2,
+.mision-a11y h2 {
+    margin-top: 0;
+    color: #405de6;
+}
+
+.sobre-mi ul,
+.mision-a11y ul {
+    padding-left: 24px;
+}
+
+.sobre-mi a {
+    color: #006fc9;
+    font-weight: 700;
+}
+
+.pestanas {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 12px;
+    color: #656565;
+    font-size: 12px;
+    letter-spacing: .06em;
+}
+
+.pestanas .activa {
+    color: #262626;
+    font-weight: 700;
+}
+
+.publicaciones {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.publicacion {
+    position: relative;
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #e5e7eb;
+}
+
+.publicacion img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .25s ease;
+}
+
+.contenido-publicacion {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 12px;
+    overflow: auto;
+    background: rgba(0, 0, 0, .65);
+    color: white;
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+.publicacion:hover img,
+.publicacion:focus-within img {
+    transform: scale(1.04);
+}
+
+.publicacion:hover .contenido-publicacion,
+.publicacion:focus-within .contenido-publicacion {
+    opacity: 1;
+}
+
+.contenido-publicacion h2 {
+    margin: 0 0 5px;
+    font-size: 16px;
+}
+
+.contenido-publicacion p {
+    margin: 0;
+    font-size: 12px;
+}
+
+footer {
+    padding: 18px;
+    color: #666;
+    text-align: center;
+    font-size: 12px;
+}
+
+/* Accesibilidad base: se puede personalizar, no conviene eliminarla. */
+.saltar {
+    position: fixed;
+    top: -90px;
+    left: 10px;
+    z-index: 100;
+    padding: 10px 14px;
+    border-radius: 0 0 6px 6px;
+    background: #000;
+    color: #fff;
+    font-weight: 700;
+}
+
+.saltar:focus { top: 0; }
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #ffbf47;
+    outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+    body { padding: 0 8px; }
+    .info-superior { gap: 12px; }
+    .aro-perfil { width: 80px; height: 80px; flex-basis: 80px; }
+    .publicaciones { grid-template-columns: 1fr; }
+    .pestanas { gap: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =====================================================
+   DESAFÍOS CSS
+   1. Cambiá la paleta de colores.
+   2. Modificá bordes, margin y padding.
+   3. Personalizá tamaños y tipografías.
+   4. Conservá contraste y legibilidad.
+   5. Investigá :hover, Flexbox, Grid o media queries.
+   ===================================================== */
