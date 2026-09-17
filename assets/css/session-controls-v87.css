@@ -1,0 +1,47 @@
+/* AulaGram v8.7 · visibilidad del cierre de sesión */
+.nav-logout,.bottom-logout{
+  border:0;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
+}
+
+.nav-logout{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  min-height:34px;
+  padding:5px 8px;
+  border-radius:8px;
+}
+
+.nav-logout:hover{
+  background:var(--soft);
+}
+
+.bottom-logout{
+  display:none;
+}
+
+/* Entre tablet y escritorio se mantiene el botón superior. */
+@media (min-width:641px) and (max-width:860px){
+  .nav-logout{display:inline-flex!important}
+  .bottom-logout{display:none!important}
+}
+
+/* En móvil se usa la barra inferior para no sobrecargar la cabecera. */
+@media (max-width:640px){
+  .nav-logout{display:none!important}
+  .bottom-logout{
+    display:flex!important;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+    min-width:52px;
+    padding:0 6px;
+  }
+  .bottom-logout span:first-child{font-size:20px;line-height:1}
+  .bottom-logout span:last-child{font-size:9px;margin-top:1px}
+}
